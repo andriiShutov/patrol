@@ -68,7 +68,7 @@ extension ProcessListeners on Process {
     bool? cancelOnError,
   }) {
     return stdout
-        .transform(utf8.decoder)
+        .transform(const Utf8Decoder(allowMalformed: true))
         .transform(const LineSplitter())
         .listen(
           onData,
@@ -85,7 +85,7 @@ extension ProcessListeners on Process {
     bool? cancelOnError,
   }) {
     return stderr
-        .transform(utf8.decoder)
+        .transform(const Utf8Decoder(allowMalformed: true))
         .transform(const LineSplitter())
         .listen(
           onData,
